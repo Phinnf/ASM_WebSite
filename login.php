@@ -36,6 +36,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
     </style>
+    <script>
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const message = document.getElementById('passwordHelp');
+        const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{10,}$/;
+        if (!regex.test(password)) {
+            message.textContent = 'Password must be at least 10 characters, include 1 uppercase letter, 1 number, and 1 special character.';
+            message.style.color = 'red';
+            return false;
+        } else {
+            message.textContent = '';
+            return true;
+        }
+    }
+    function checkForm(e) {
+        if (!validatePassword()) {
+            e.preventDefault();
+        }
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('loginForm').addEventListener('submit', checkForm);
+        document.getElementById('password').addEventListener('input', validatePassword);
+    });
+    </script>
 </head>
 
 <body>
@@ -47,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if ($error): ?>
                         <div class="alert alert-danger"><?php echo $error; ?></div>
                     <?php endif; ?>
-                    <form method="post" action="">
+                    <form method="post" action="" id="loginForm">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username or Email</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -55,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
+                            <div id="passwordHelp" class="form-text"></div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                     </form>
