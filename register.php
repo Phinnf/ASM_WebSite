@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Computer Selling & Service</title>
+    <title>Register - TechStore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -75,7 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="card register-card p-4">
-                    <h2 class="mb-4">Register</h2>
+                    <div class="text-center mb-4">
+                        <img src="IMG/image.png" alt="TechStore Logo" height="60" class="mb-3">
+                        <h2>Register with TechStore</h2>
+                    </div>
                     <?php if ($error): ?>
                         <div class="alert alert-danger"><?php echo $error; ?></div>
                     <?php endif; ?>
